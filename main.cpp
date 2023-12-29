@@ -160,18 +160,14 @@ void WallCollisionDetection()
     if (snakeHeadRect.x > windowWidth)
         snakeHeadRect.x -= windowWidth;
     
-    if (snakeHeadRect.x < 0)
+    else if (snakeHeadRect.x < 0)
         snakeHeadRect.x += windowWidth;
 
-    if (snakeHeadRect.y > windowHeight)
+    else if (snakeHeadRect.y > windowHeight)
         snakeHeadRect.y -= windowHeight;
 
-    if (snakeHeadRect.y < 0)
+    else if (snakeHeadRect.y < 0)
         snakeHeadRect.y += windowHeight;
-    
-    
-    
-    //Die();
 }
 
 void Die()
