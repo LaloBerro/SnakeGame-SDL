@@ -1,6 +1,7 @@
 ﻿#include "SDL.h"
 #include <algorithm>
 #include <deque>
+#include "SDL_image.h"
 
 enum Direction
 {

@@ -1,14 +1,17 @@
 ﻿cmake_minimum_required(VERSION 3.25)
 project(SnakeGame_SDL)
 
-set(CMAKE_CXX_STANDARD 17)
-list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
+include(CTest)
+enable_testing()
 
-set(SDL2_PATH "D:/Data/SharedLibrary/SDLMW/SDL2-2.28.5/x86_64-w64-mingw32")
+set(CPACK_PROJECT_NAME ${PROJECT_NAME})
+set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
+include(CPack)
 
+set(SDL2_DIR "D:/Data/SharedLibrary/SDLMW/SDL2-2.28.5/cmake")
+set(SDL2_Image_DIR "D:/Data/SharedLibrary/SDLMW/SDL2_image-2.8.1/cmake")
 find_package(SDL2 REQUIRED)
-include_directories(${SDL2_INCLUDE_DIR})
+find_package(SDL2_Image REQUIRED)
 
-add_executable(SnakeGame_SDL main.cpp)
-
-target_link_libraries(${PROJECT_NAME} ${SDL2_LIBRARY})
+add_executable(${PROJECT_NAME} main.cpp)
+target_link_libraries(${PROJECT_NAME} SDL2::SDL2main SDL2::SDL2 SDL2_image::SDL2_image)
