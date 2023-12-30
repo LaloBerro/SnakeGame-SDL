@@ -15,3 +15,4 @@ find_package(SDL2_Image REQUIRED)
 
 add_executable(${PROJECT_NAME} main.cpp)
 target_link_libraries(${PROJECT_NAME} SDL2::SDL2main SDL2::SDL2 SDL2_image::SDL2_image)
+set_target_properties(${PROJECT_NAME} PROPERTIES WIN32_EXECUTABLE FALSE)
