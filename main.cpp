@@ -24,8 +24,8 @@ std::deque<SDL_Rect> snakeBodyRectDeque;
 int snakeLength = 0;
 int snakeDirection = 0;
 int snakeSpeed = 10; //10
-int snakeWidth = 30; //10
-int snakeHeight = 30;
+int snakeWidth = 20; //10
+int snakeHeight = 20;
 int amountOfSnakeBodyIncrease = 10;
 
 int minDistanceToCollideWithApple = 20;
@@ -37,8 +37,6 @@ bool isApplicationRunning = true;
 int snakeHeadTextureWidth = 32;
 int snakeHeadTextureHeight = 32;
 SDL_Texture *snakeHeadTexture;
-SDL_Rect snakeHeadSourceRect;
-SDL_Rect snakeHeadDestinationRect;
 
 void Initialize();
 void ExecuteGameLoop();
@@ -68,8 +66,6 @@ int main(int argc, char *argv[])
 void Initialize()
 {
     SDL_Init(SDL_INIT_EVERYTHING);
-    freopen("CON", "w", stdout); // redirects stdout
-    freopen("CON", "w", stderr); // redirects stderr
 
     window = SDL_CreateWindow("Snake", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, windowWidth, windowHeight, 0);
     renderer = SDL_CreateRenderer(window, -1, 0);
@@ -89,7 +85,6 @@ void Initialize()
     {
         std::cout << "SDL2_Image image not found" << std::endl;
     }
-    
     
     snakeHeadTexture = SDL_CreateTextureFromSurface(renderer, tmpSurface);
 
@@ -274,16 +269,15 @@ void DrawSnakeHead()
             angle = 90.0f;
             break;
     }
-
+    
     SDL_Point center = {snakeWidth / 2, snakeHeight / 2};
     SDL_RendererFlip flip = SDL_FLIP_NONE;
 
-    SDL_RenderCopyEx(renderer, snakeHeadTexture, &crop , &snakeHeadRect, angle, &center, flip);
+    SDL_RenderCopyEx(renderer, snakeHeadTexture, NULL , &snakeHeadRect, angle, &center, flip);
 }
 
 void DrawSnakeSegment(SDL_Rect snakeSegmentRect)
 {
-    snakeSegmentRect.w = 28;
     SDL_RenderFillRect(renderer, &snakeSegmentRect);
 }
 
